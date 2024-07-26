@@ -1,4 +1,4 @@
-# Foobar
+# Lutz POC FLux
 
 LutzPOCFlux is a Python library for calculating POC export flux as detailed in [Lutz et al. 2007](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2006JC003706).
 
@@ -14,11 +14,18 @@ Numpy is the only dependency. Other parts of the process, such as reading HDF fi
 
 ## Usage
 
-There is a convenience class for calculating Flux given a list of annual npp arrays.
+There is a convenience class for calculating Flux given a list of annual npp arrays and a `ze` array (or float value).
+
+This handles
+
+* Creation of the SVI array
+* Creation of the total average array
+* Calculation of the p ratio_ze
+* Application of the ratio to the total average array
 
 ```python
 from lutzpocflux import MakeFlux
-mf = MakeFlux(ze=4000.0, annual_npp=npp_list)
+mf = MakeFlux(ze=ze, annual_npp=npp_list)
 flux = mf.get_flux()
 ```
 
@@ -47,7 +54,7 @@ prd = prd_f(svi)
 prr = prr_f(svi)
 
 # ze can be a 2D array of the same shape as the npp input arrays or a float value
-pratio = pratioze(prd,ze,rld,prr)
+pratio = pratioze_f(prd,ze,rld,prr)
 
 # Now use the pratio to calculate your export npp given your choice of npp array:
 npp_flux = npp * pratio
