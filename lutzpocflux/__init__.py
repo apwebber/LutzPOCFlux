@@ -1,1 +1,1 @@
-from lutzpocflux.lutzpocflux import MakeFlux
+from lutzpocflux.lutzpocflux import MakeFlux as MakeFlux

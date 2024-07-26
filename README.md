@@ -22,7 +22,7 @@ mf = MakeFlux(ze=4000.0, annual_npp=npp_list)
 flux = mf.get_flux()
 ```
 
-Alternatively the calculated flux ratio can be used against another npp array provided serately.
+Alternatively the calculated flux ratio can be used against another npp array provided seperately.
 
 ```python
 from lutzpocflux import MakeFlux

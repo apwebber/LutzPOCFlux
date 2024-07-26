@@ -1,14 +1,32 @@
 import numpy as np
-from lutzpocflux.equations import rld_f, prd_f, prr_f, pratioze_f
+
+from lutzpocflux.equations import pratioze_f, prd_f, prr_f, rld_f
 
 
 class MakeFlux:
+
     def __init__(
         self,
         ze: np.ndarray | float,
         annual_npp: list[np.ndarray],
         npp: np.ndarray | None = None,
     ):
+        """
+        Convenience class for calculating export flux
+
+        Args:
+            ze (np.ndarray | float):    Array or float of export depth
+                                        (depth z minus export zone depth)
+            annual_npp (list[np.ndarray]): List of arrays for annual net primary production.
+            npp (np.ndarray | None, optional):  Alternative npp layer to calculate the
+                                                final export flux. If not provided then
+                                                the average of all the annual_npp
+                                                arrays is used. Defaults to None.
+
+        Raises:
+            ValueError: More than one npp layer should be provided in order to calculate
+            SVI.
+        """
         self.ze = ze
         annual_npp = np.array(annual_npp)
         self.npp = npp
@@ -20,7 +38,14 @@ class MakeFlux:
         self.all_years_std = np.nanstd(annual_npp, axis=0)
         self.svi = self.all_years_std / self.all_years_average
 
-    def get_flux(self):
+    def get_flux(self) -> np.ndarray:
+        """
+        Calculating the flux given the provided npp and ze arrays.
+
+        Returns:
+            np.ndarray: The export flux at the given export depth ze.
+        """
+
         prdl = prd_f(self.svi)
         rldl = rld_f(self.svi)
         prrl = prr_f(self.svi)

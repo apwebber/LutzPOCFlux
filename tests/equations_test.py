@@ -28,6 +28,7 @@ with open(RESULTS_FILE, "r", encoding='utf8') as f:
 
 
 def test_equations():
+    """Test parameter calculations"""
     for d in RESULTS:
         assert prd(d["svi"]) == approx(d["prd"])
         assert rld(d["svi"]) == approx(d["rld"])
@@ -35,6 +36,7 @@ def test_equations():
 
 
 def test_pratio_flux():
+    """Test p ratio and flux calculation"""
     for d in RESULTS:
         pratio = pratioze(prd(d["svi"]), d["ze"], rld(d["svi"]), prr(d["svi"]))
         assert pratio == approx(d["pratio"])
