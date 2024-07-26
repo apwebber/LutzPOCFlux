@@ -7,7 +7,7 @@ LutzPOCFlux is a Python library for calculating POC export flux as detailed in [
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install LutzPOCFlux.
 
 ```bash
-pip install foobar
+pip install lutzpocflux
 ```
 
 Numpy is the only dependency. Other parts of the process, such as reading HDF files and plotting results are expected to be done with other packages.
