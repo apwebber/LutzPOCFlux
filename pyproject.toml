@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "lutzpocflux"
-version = "0.1.4"
+version = "0.1.5"
 description = "Calculate POC Export flux, as Lutz et al. 2007"
 authors = ["Alex Webber <alexpwebber@gmail.com>"]
 readme = "README.md"
@@ -10,7 +10,7 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 
-[project.urls]
+[tool.poetry.urls]
 Homepage = "https://github.com/apwebber/LutzPOCFlux"
 Issues = "https://github.com/apwebber/LutzPOCFlux/issues"
 
